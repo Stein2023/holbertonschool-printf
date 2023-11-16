@@ -1,4 +1,6 @@
 #include "main.h"
+#include "main_putchar.c"
+#include "puts.c"
 
 /**
  * _printf - print to stout formatted text
