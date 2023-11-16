@@ -1,6 +1,4 @@
 #include "main.h"
-#include "main_putchar.c"
-#include "puts.c"
 
 /**
  * _printf - print to stout formatted text
@@ -9,7 +7,8 @@
  */
 int _printf(const char *format, ...) {
     unsigned int i;
-    unsigned int count = 0;
+    unsigned int str_count;
+    int count = 0;
     va_list args;
 
     if (!format)
@@ -21,26 +20,25 @@ int _printf(const char *format, ...) {
         if (format[i] != '%') {
             main_putchar(format[i]);
             ++count;
+        } else if (format[i + 1] == 'c') {
+            main_putchar(va_arg(args, int));
+            i++;
+            ++count;
+        } else if (format[i + 1] == 's') {
+            str_count = putss(va_arg(args, char *));
+            i++;
+            count += str_count;
+      	} else if (format[i + 1] == '%') {
+            main_putchar('%');
+            ++count;
+            i++;
         } else {
-            ++i;
-            if (format[i] == 's') {
-                count += putss(va_arg(args, char *));
-            } else if (format[i] == 'c') {
-                main_putchar(va_arg(args, int));
-                ++count;
-            } else if (format[i] == '%') {
-                main_putchar('%');
-                ++count;
-            } else {
-
-                main_putchar('%');
-                main_putchar(format[i]);
-                ++count;
-            }
+            va_end(args);
+            return (-1);
         }
     }
 
     va_end(args);
-    return count;
+    return (count);
 }
 
