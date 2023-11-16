@@ -17,10 +17,13 @@ int putss(char *c)
             main_putchar(c[count]);
         }
     }
+    else {
+        char *null_str = "(null)";
+        for (count = 0; null_str[count] != '\0'; count++) 
+	{
+            main_putchar(null_str[count]);
+        }
+    }
 
     return (count);
 }
-
-
-
-
