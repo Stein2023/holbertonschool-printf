@@ -53,11 +53,6 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 
-	if (format[i - 1] == '\n' && i > 0)
-	{
-		main_putchar('\n');
-		++count;
-	}
 	return (count);
 }
 
