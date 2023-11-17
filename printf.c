@@ -32,7 +32,11 @@ int _printf(const char *format, ...) {
             main_putchar('%');
             ++count;
             i++;
-        } else {
+        } else if (format[i + 1] == 'n') {
+		main_putchar('\n');
+		i++;
+		++count;
+	} else {
             va_end(args);
             return (-1);
         }
