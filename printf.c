@@ -21,11 +21,7 @@ int _printf(const char *format, ...)
 			main_putchar(format[i]);
 			++count;
 		}
-		else if (format[i + 1] == '\0')
-		{
-			va_end(args);
-			return (-1);
-		}
+
 		else if (format[i + 1] == 'c')
 		{
 			main_putchar(va_arg(args, int));
@@ -57,6 +53,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(args);
+
 
 
 	return (count);
@@ -99,3 +96,5 @@ int print_number(int num)
 	main_putchar(num % 10 + '0');
 	return (count + 1);
 }
+
+
